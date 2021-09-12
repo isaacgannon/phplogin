@@ -39,9 +39,7 @@ if (isset($_POST['submit'])) {
 				if ($db->error) {
 					$error = $db->error;
 					echo('error');
-				} 
-				
-			else {
+				}else {
 				echo "<script>alert('Woops! Something Wrong Went.')</script>";
 			}
 		} 	
@@ -101,7 +99,7 @@ if (isset($_POST['submit'])) {
 				<input type="password" placeholder="Confirm pwrd" name="cpwrd" value="<?= $pwrd ?>" >
 			</div>
 			<div class="input-group">
-				<button name="submit" type="submit" class="btn">Register</button>
+				<button name="submit" type="submit" value="submit" class="btn">Register</button>
 			</div>
 			<p class="login-register-text">Have an account? <a href="login.php">Login Here</a>.</p>
 		</form>
