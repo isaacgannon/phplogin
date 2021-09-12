@@ -5,15 +5,17 @@ $dbUsername = 'root';
 $dbPassword = 'password';
 $dbName = 'flowers';
 
-$conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName)or die("Connect failed: %s\n". $conn -> error);
+$db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+if ($db->connect_error) {
+    die("Connect failed: ". $mysqli->connect_error);
+}
 
  function getData(){
     $sql = "SELECT * FROM 'flowers'";
    
-    $result = mysqli_query($this->con, $sql);
+    $result = $db->query($sql);
 
-    if(mysqli_num_rows($result) > 0){
+    if($result){
         return $result;
     }
-    }
-   
+}

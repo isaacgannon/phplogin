@@ -25,11 +25,11 @@ if (isset($_POST['submit'])) {
 	
 	if ($pwrd == $cpwrd) {
 		$sql = "SELECT * FROM user WHERE email='$email'";
-		$result = mysqli_query($conn, $sql);
+		$result = mysqli_query($db, $sql);
 		if (!$result->num_rows > 0) {
 			$sql = "INSERT INTO user (username, email, pwrd)
 					VALUES ('$username', '$email', '$pwrd')";
-			$result = mysqli_query($conn, $sql);
+			$result = mysqli_query($db, $sql);
 			if ($result) {
 				echo "<script>alert('Wow! User Registration Completed.')</script>";
 				$_POST['username'] = "" ;
@@ -38,6 +38,7 @@ if (isset($_POST['submit'])) {
 				$_POST['cpwrd'] = "";
 				if ($db->error) {
 					$error = $db->error;
+					echo('error');
 				} 
 				
 			else {
@@ -94,13 +95,13 @@ if (isset($_POST['submit'])) {
 				<input type="email" placeholder="Email" name="email" value="<?= $email ?>" >
 			</div>
 			<div class="input-group">
-				<input type="pwrd" placeholder="pwrd" name="pwrd" value="<?= $pwrd ?>" >
+				<input type="password" placeholder="pwrd" name="pwrd" value="<?= $pwrd ?>" >
             </div>
             <div class="input-group">
-				<input type="pwrd" placeholder="Confirm pwrd" name="cpwrd" value="<?= $pwrd ?>" >
+				<input type="password" placeholder="Confirm pwrd" name="cpwrd" value="<?= $pwrd ?>" >
 			</div>
 			<div class="input-group">
-				<button name="submit" class="btn">Register</button>
+				<button name="submit" type="submit" class="btn">Register</button>
 			</div>
 			<p class="login-register-text">Have an account? <a href="login.php">Login Here</a>.</p>
 		</form>
