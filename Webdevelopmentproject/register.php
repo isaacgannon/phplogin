@@ -27,8 +27,10 @@ if (isset($_POST['submit'])) {
 		$sql = "SELECT * FROM user WHERE email='$email'";
 		$result = mysqli_query($db, $sql);
 		if (!$result->num_rows > 0) {
-			$sql = "INSERT INTO user (username, email, pwrd)
+			$sql = "INSERT INTO user ('username', 'email', 'pwrd')
 					VALUES ('$username', '$email', '$pwrd')";
+					if (!$sql)
+					die ('Error selecting the database!');
 			$result = mysqli_query($db, $sql);
 			if ($result) {
 				echo "<script>alert('Wow! User Registration Completed.')</script>";
@@ -39,13 +41,13 @@ if (isset($_POST['submit'])) {
 				if ($db->error) {
 					$error = $db->error;
 					echo('error');
-				}else {
-				echo "<script>alert('Woops! Something Wrong Went.')</script>";
-			}
+				  } else {
+					echo "<script>alert('Woops! Something Wrong Went.')</script>";
+				  }
 		} 	
 	} 
 }
-
+print_r($_POST);
 }
 ?>
 
@@ -62,11 +64,6 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/fontawesome.min.css">
 
-	
-
-	
-
-	
 </head>
 <div class="container">
         <header class="d-flex justify-content-center py-3">
@@ -78,7 +75,6 @@ if (isset($_POST['submit'])) {
             <li class="nav-item"><a href="login.php" class="nav-link">Log in</a></li> 
             <li class="nav-item"><a href="logout.php" class="nav-link">Log out</a></li>
 			<li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
-  
 		</ul>
         </header>
       </div>
